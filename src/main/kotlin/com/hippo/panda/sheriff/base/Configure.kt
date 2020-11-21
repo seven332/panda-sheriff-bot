@@ -24,4 +24,5 @@ interface Configure {
     val banDuration: Long
     val recaptchaLife: Long
     val welcomeMessage: String
+    val botVersion: String
 }

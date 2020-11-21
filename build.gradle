@@ -65,6 +65,18 @@ jar {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
+static String exec(String command) {
+    Runtime r = Runtime.getRuntime()
+    Process p = r.exec(command)
+    String result = ""
+    BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()))
+    String inputLine
+    while ((inputLine = reader.readLine()) != null) {
+        result += inputLine
+    }
+    return result
+}
+
 task preBuild {
     Properties prop = new Properties()
     FileReader reader = new FileReader("bot.release.properties", Charset.forName("UTF-8"))
@@ -90,6 +102,8 @@ task preBuild {
     writer.write("        get() = " + prop.get("recaptchaLife") + "\n")
     writer.write("    override val welcomeMessage: String\n")
     writer.write("        get() = \"" + prop.get("welcomeMessage") + "\"\n")
+    writer.write("    override val botVersion: String\n")
+    writer.write("        get() = \"" + exec("git rev-list --all --count") + "(" + exec("git rev-parse --short HEAD") + ")\"\n")
     writer.write("}\n")
     writer.close()
 }
