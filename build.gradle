@@ -103,7 +103,7 @@ task preBuild {
     writer.write("    override val welcomeMessage: String\n")
     writer.write("        get() = \"" + prop.get("welcomeMessage") + "\"\n")
     writer.write("    override val botVersion: String\n")
-    writer.write("        get() = \"" + exec("git rev-list --all --count") + "(" + exec("git rev-parse --short HEAD") + ")\"\n")
+    writer.write("        get() = \"" + exec("git rev-list --count HEAD") + "(" + exec("git rev-parse --short HEAD") + ")\"\n")
     writer.write("}\n")
     writer.close()
 }
