@@ -25,15 +25,20 @@ import me.ivmg.telegram.entities.Message
 import me.ivmg.telegram.entities.Update
 import me.ivmg.telegram.entities.User
 
+val commandDescriptions = linkedMapOf<Class<CommandModule>, String>()
+
 abstract class CommandModule: Module {
     protected abstract val isAdminOnly: Boolean
     protected abstract val command: String
+    protected abstract val description: String
 
     override fun willCreateBot(register: Register) {
         register.register(::checkCommand, ::handleCommand)
     }
 
-    override fun didCreateBot(bot: Bot) {}
+    override fun didCreateBot(bot: Bot) {
+        commandDescriptions[javaClass] = description
+    }
 
     private fun checkCommand(update: Update): Boolean {
         val text = update.message?.text ?: return false

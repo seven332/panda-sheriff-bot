@@ -30,6 +30,9 @@ class UnbanModule: CommandModule() {
     override val command: String
         get() = "unban"
 
+    override val description: String
+        get() = "/unban [user...]"
+
     override fun handleCommand(bot: Bot, update: Update, message: Message, chat: Chat, user: User, text: String) {
         val toBan = message.findUsers()
         if (toBan.isEmpty()) return

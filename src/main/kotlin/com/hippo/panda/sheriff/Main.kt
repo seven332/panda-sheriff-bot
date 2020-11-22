@@ -23,6 +23,7 @@ import com.hippo.panda.sheriff.business.CollectAdminModule
 import com.hippo.panda.sheriff.business.CollectUserModule
 import com.hippo.panda.sheriff.business.NewMemberModule
 import com.hippo.panda.sheriff.business.command.BanModule
+import com.hippo.panda.sheriff.business.command.HelpModule
 import com.hippo.panda.sheriff.business.command.UnbanModule
 import com.hippo.panda.sheriff.business.command.VersionModule
 import me.ivmg.telegram.Bot
@@ -36,7 +37,8 @@ fun main() {
         NewMemberModule(),
         BanModule(),
         UnbanModule(),
-        VersionModule()
+        VersionModule(),
+        HelpModule()
     )
 
     val builder = Bot.Builder()
