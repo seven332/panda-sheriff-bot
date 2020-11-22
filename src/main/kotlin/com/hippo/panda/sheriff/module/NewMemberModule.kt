@@ -22,6 +22,7 @@ import com.hippo.panda.sheriff.util.toMarkdown
 import com.hippo.panda.sheriff.util.unban
 import me.ivmg.telegram.Bot
 import me.ivmg.telegram.entities.*
+import java.util.*
 import kotlin.random.Random
 
 class NewMemberModule: Module {
@@ -102,10 +103,12 @@ class NewMemberModule: Module {
 
         jobScheduler.cancel(recaptcha.jobId)
 
-        bot.deleteMessage(recaptcha.chatId, recaptcha.messageId)
-
         val user = store.findUser(recaptcha.userId) ?: return
-        val text = "大约 ${user.toMarkdown()} 的确说不了话。"
+        bot.deleteMessage(recaptcha.chatId, recaptcha.messageId)
+        bot.kickChatMember(recaptcha.chatId, recaptcha.userId, Date(0))
+        bot.unbanChatMember(recaptcha.chatId, recaptcha.userId)
+
+        val text = "${user.toMarkdown()} 因无法通过测验而被移除出群组。"
         bot.sendMessage(recaptcha.chatId, text, parseMode = ParseMode.MARKDOWN)
     }
 
