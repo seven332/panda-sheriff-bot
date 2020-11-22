@@ -36,7 +36,8 @@ abstract class CommandModule: Module {
     override fun didCreateBot(bot: Bot) {}
 
     private fun checkCommand(update: Update): Boolean {
-        return (update.message?.text?.startsWith("/$command ") ?: false) &&
+        val text = update.message?.text ?: return false
+        return (text.startsWith("/$command ") || text == "/$command") &&
                 (!isAdminOnly || update.message?.from?.isAdmin ?: false)
     }
 
