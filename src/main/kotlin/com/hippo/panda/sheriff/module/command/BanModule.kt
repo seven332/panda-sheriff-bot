@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hippo.panda.sheriff.business.command
+package com.hippo.panda.sheriff.module.command
 
 import com.hippo.panda.sheriff.base.configure
 import com.hippo.panda.sheriff.util.ban

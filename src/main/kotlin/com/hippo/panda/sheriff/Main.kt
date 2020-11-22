@@ -19,13 +19,13 @@ package com.hippo.panda.sheriff
 import com.hippo.panda.sheriff.base.RealRegister
 import com.hippo.panda.sheriff.base.configure
 import com.hippo.panda.sheriff.base.setupDependencies
-import com.hippo.panda.sheriff.business.CollectAdminModule
-import com.hippo.panda.sheriff.business.CollectUserModule
-import com.hippo.panda.sheriff.business.NewMemberModule
-import com.hippo.panda.sheriff.business.command.BanModule
-import com.hippo.panda.sheriff.business.command.HelpModule
-import com.hippo.panda.sheriff.business.command.UnbanModule
-import com.hippo.panda.sheriff.business.command.VersionModule
+import com.hippo.panda.sheriff.module.CollectAdminModule
+import com.hippo.panda.sheriff.module.CollectUserModule
+import com.hippo.panda.sheriff.module.NewMemberModule
+import com.hippo.panda.sheriff.module.command.BanModule
+import com.hippo.panda.sheriff.module.command.HelpModule
+import com.hippo.panda.sheriff.module.command.UnbanModule
+import com.hippo.panda.sheriff.module.command.VersionModule
 import me.ivmg.telegram.Bot
 
 fun main() {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hippo.panda.sheriff.business
+package com.hippo.panda.sheriff.module
 
 import com.hippo.panda.sheriff.base.*
 import me.ivmg.telegram.Bot

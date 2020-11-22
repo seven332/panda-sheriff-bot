@@ -1,4 +1,4 @@
-package com.hippo.panda.sheriff.business.command
+package com.hippo.panda.sheriff.module.command
 
 import me.ivmg.telegram.Bot
 import me.ivmg.telegram.entities.Chat
