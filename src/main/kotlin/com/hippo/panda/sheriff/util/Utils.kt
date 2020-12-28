@@ -38,6 +38,16 @@ fun User.toMarkdown(): String {
     }
 }
 
+fun User.toMaskedMarkdown(): String {
+    val username = username
+    return if (username != null) {
+        "@" + username.replace("_", "\\_")
+    } else {
+        val maskedName = displayName.substring(0,2) + "█████" + displayName.substring(displayName.length - 2)
+        "[$maskedName](tg://user?id=$id)"
+    }
+}
+
 /**
  * Finds all mentioned users in message.
  */
