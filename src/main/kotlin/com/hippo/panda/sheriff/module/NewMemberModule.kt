@@ -19,6 +19,7 @@ package com.hippo.panda.sheriff.module
 import com.hippo.panda.sheriff.base.*
 import com.hippo.panda.sheriff.util.ban
 import com.hippo.panda.sheriff.util.toMarkdown
+import com.hippo.panda.sheriff.util.toMaskedMarkdown
 import com.hippo.panda.sheriff.util.unban
 import me.ivmg.telegram.Bot
 import me.ivmg.telegram.entities.*
@@ -75,7 +76,7 @@ class NewMemberModule: Module {
             }
             .map { listOf(it) }
         val text = """
-            ${user.toMarkdown()}
+            ${user.toMaskedMarkdown()}
             回答问题以解除禁言。
             Answer the questions to unban yourself.
             ➡${answer.emoji}⬅
@@ -108,7 +109,7 @@ class NewMemberModule: Module {
         bot.kickChatMember(recaptcha.chatId, recaptcha.userId, Date(0))
         bot.unbanChatMember(recaptcha.chatId, recaptcha.userId)
 
-        val text = "${user.toMarkdown()} 因无法通过测验而被移除出群组。"
+        val text = "${user.toMaskedMarkdown()} 因无法通过测验而被移除出群组。"
         bot.sendMessage(recaptcha.chatId, text, parseMode = ParseMode.MARKDOWN)
     }
 
