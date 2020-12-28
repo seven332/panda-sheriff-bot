@@ -43,8 +43,13 @@ fun User.toMaskedMarkdown(): String {
     return if (username != null) {
         "@" + username.replace("_", "\\_")
     } else {
-        val maskedName = displayName.substring(0,2) + "█████" + displayName.substring(displayName.length - 2)
-        "[$maskedName](tg://user?id=$id)"
+        if (displayName.length <= 4){
+            "[$displayName](tg://user?id=$id)"
+        }
+        else{
+            val maskedName = displayName.substring(0,2) + "█████" + displayName.substring(displayName.length - 2)
+            "[$maskedName](tg://user?id=$id)"
+        }
     }
 }
 
