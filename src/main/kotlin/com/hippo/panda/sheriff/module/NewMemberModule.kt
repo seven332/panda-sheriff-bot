@@ -48,11 +48,12 @@ class NewMemberModule: Module {
         val user = update.message?.newChatMember
         if (message == null || chat == null || user == null) return
 
+        bot.deleteMessage(chat.id, message.messageId)
         bot.ban(chat, user)
-        showRecaptcha(bot, message, chat, user)
+        showRecaptcha(bot, chat, user)
     }
 
-    private fun showRecaptcha(bot: Bot, message: Message, chat: Chat, user: User) {
+    private fun showRecaptcha(bot: Bot, chat: Chat, user: User) {
         val recaptcha = Recaptcha(
             id = 0,
             chatId = chat.id,
@@ -88,7 +89,6 @@ class NewMemberModule: Module {
             chat.id,
             text,
             parseMode = ParseMode.MARKDOWN,
-            replyToMessageId = message.messageId,
             replyMarkup = replyMarkup
         )
         val recaptchaMessageId = result.first?.body()?.result?.messageId ?: return
